@@ -1,0 +1,49 @@
+{
+  "pages": [
+    "pages/bigDay/createBigDay",
+    "pages/index/index",
+    "pages/calendar/calendar",
+    "pages/mine/mine",
+    "pages/keep/keep",
+    "pages/calendar/weather",
+    "pages/bigDay/bigDay"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "navigationBarTitleText": "点滴",
+    "backgroundColor": "#FFFFFF"
+  },
+  "tabBar": {
+    "backgroundColor": "#FFFFFF",
+    "selectedColor": "#F2AC82",
+    "list": [
+      {
+        "pagePath": "pages/calendar/calendar",
+        "text": "日历",
+        "iconPath": "static/calendar.png",
+        "selectedIconPath": "static/calandar_selected.png"
+      },
+      {
+        "pagePath": "pages/keep/keep",
+        "text": "打卡",
+        "iconPath": "static/keep.png",
+        "selectedIconPath": "static/keep_selected.png"
+      },
+      {
+        "pagePath": "pages/bigDay/bigDay",
+        "text": "纪念日",
+        "iconPath": "static/bigDay.png",
+        "selectedIconPath": "static/bigDay_selected.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "static/user.png",
+        "selectedIconPath": "static/user_selected.png"
+      }
+    ]
+  },
+  "usingComponents": {}
+}

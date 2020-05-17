@@ -1,0 +1,9 @@
+
+.logo {
+	height: 600rpx;
+	width: 100%;
+}
+.bg-full {
+	padding-bottom: 200%;
+}
+
