@@ -1,65 +1,69 @@
 {
-	"pages": [ {
-            "path" : "pages/bigDay/createBigDay",
-            "style" : {}
-        }, {
-		"path": "pages/index/index",
-		"style": {
-			"navigationBarTitleText": "登录"
+	"pages": [{
+			"path": "pages/bigDay/bigDay",
+			"style": {
+				"navigationBarTitleText": "纪念日",
+				"enablePullDownRefresh": true
+			}
+		}, {
+			"path": "pages/bigDay/createBigDay",
+			"style": {}
+		},
+		{
+			"path": "pages/bigDay/editeBigDay",
+			"style": {}
+		}, {
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "登录"
+			}
+		}, {
+			"path": "pages/calendar/calendar",
+			"style": {
+				"navigationBarTitleText": "日历"
+			}
+		}, {
+			"path": "pages/mine/mine",
+			"style": {}
+		}, {
+			"path": "pages/keep/keep",
+			"style": {}
+		}, {
+			"path": "pages/calendar/weather",
+			"style": {}
 		}
-	}, {
-		"path": "pages/calendar/calendar",
-		"style": {
-			"navigationBarTitleText": "日历"
-		}
-	},{
-		"path": "pages/mine/mine",
-		"style": {}
-	}, {
-            "path" : "pages/keep/keep",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/calendar/weather",
-            "style" : {}
-        }
-        ,{
-		"path": "pages/bigDay/bigDay",
-		"style": {
-			"navigationBarTitleText": "纪念日"
-		}
-	}
-    ],
-	
+
+	],
+
 	"tabBar": {
-		"backgroundColor":"#FFFFFF",
-		"selectedColor":"#F2AC82",
+		"backgroundColor": "#FFFFFF",
+		"selectedColor": "#F2AC82",
 		"list": [{
 			"pagePath": "pages/calendar/calendar",
 			"text": "日历",
-			"iconPath":"static/calendar.png",
-			"selectedIconPath":"static/calandar_selected.png"
+			"iconPath": "static/calendar.png",
+			"selectedIconPath": "static/calandar_selected.png"
 		}, {
 			"pagePath": "pages/keep/keep",
 			"text": "打卡",
-			"iconPath":"static/keep.png",
-			"selectedIconPath":"static/keep_selected.png"
-		},{
+			"iconPath": "static/keep.png",
+			"selectedIconPath": "static/keep_selected.png"
+		}, {
 			"pagePath": "pages/bigDay/bigDay",
 			"text": "纪念日",
-			"iconPath":"static/bigDay.png",
-			"selectedIconPath":"static/bigDay_selected.png"
-		},{
+			"iconPath": "static/bigDay.png",
+			"selectedIconPath": "static/bigDay_selected.png"
+		}, {
 			"pagePath": "pages/mine/mine",
 			"text": "我的",
-			"iconPath":"static/user.png",
-			"selectedIconPath":"static/user_selected.png"
+			"iconPath": "static/user.png",
+			"selectedIconPath": "static/user_selected.png"
 		}]
 	},
-	
+
 	"globalStyle": {
-		"navigationBarTextStyle":"black",
-		"navigationBarBackgroundColor":"#FFFFFF",
+		"navigationBarTextStyle": "black",
+		"navigationBarBackgroundColor": "#FFFFFF",
 		"navigationBarTitleText": "点滴",
 		"backgroundColor": "#FFFFFF"
 	}

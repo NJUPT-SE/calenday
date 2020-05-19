@@ -106,6 +106,22 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
+  var l0 = _vm.__map(_vm.bigDays, function(dayInfo, __i0__) {
+    var g0 = dayInfo.date.substring(dayInfo.date.length - 5)
+    return {
+      $orig: _vm.__get_orig(dayInfo),
+      g0: g0
+    }
+  })
+
+  _vm.$mp.data = Object.assign(
+    {},
+    {
+      $root: {
+        l0: l0
+      }
+    }
+  )
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -198,85 +214,88 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 var _default =
 {
   data: function data() {
     return {
       uid: 1,
       modalName: null,
-      colorList: ["grey", "red", "green", "purple", "blue", "orange", "yellow", "olive", "cyan", "brown"],
-      bigDays: [{
-        id: 1,
-        date: "01-01",
-        title: ["赖美云跨年晚会"],
-        notes: ["好开心啊"] },
-
-      {
-        id: 2,
-        date: "01-10",
-        title: ["操作系统复习了一晚上", "期末考试结束"],
-        notes: ["加油！", "Yeah！"] },
-
-      {
-        id: 3,
-        date: "01-11",
-        title: ["寒假正式开始"],
-        notes: ["回到家了"] },
-
-      {
-        id: 4,
-        date: "01-25",
-        title: ["又是一年除夕夜"],
-        notes: ["新年快乐！"] },
-
-
-      {
-        id: 5,
-        date: "02-14",
-        title: ["情人节——我还在看高木同学", "高木同学（二）", "高木同学（三）"],
-        notes: ["好酸", "好甜", "我可以"] },
-
-      {
-        id: 6,
-        date: "02-29",
-        title: ["2020年2月29日"],
-        notes: ["四年一度，打卡留念！"] },
-
-      {
-        id: 7,
-        date: "03-15",
-        title: ["酸掉牙"],
-        notes: ["甜到需要胰岛素"] },
-
-      {
-        id: 8,
-        date: "05-01",
-        title: ["劳动节"],
-        notes: ["劳动最快乐！"] },
-
-      {
-        id: 9,
-        date: "05-02",
-        title: ["炮姐生日"],
-        notes: ["Bilibili干杯！"] },
-
-      {
-        id: 10,
-        date: "05-13",
-        title: ["任务完成"],
-        notes: ["点滴-接口登录对接成功！"] }],
-
-
-      selectedId: -1,
-      selectedIndex: -1 };
+      colorList: ["red", "orange", "yellow", "olive", "green", "cyan", "blue", "purple", "mauve", "pink"],
+      bigDays: [],
+      selectedId: -1 };
 
   },
   methods: {
+    //获取用户id
+    getUid: function getUid() {
+      var _this = this;
+      //获取id
+      wx.login({
+        success: function success(res) {
+          if (res.code) {
+            //发起网络请求
+            var secret = res.code;
+            var uinfo = {};
+            wx.getUserInfo({
+              success: function success(res) {
+                uinfo = res.userInfo;
+                uni.request({
+                  method: "GET",
+                  url: "http://localhost:8080/api/UserManage",
+                  header: {
+                    "content-type": "application/json" },
+
+                  data: {
+                    code: secret,
+                    gender: uinfo.gender,
+                    nickname: uinfo.nickName,
+                    avaUrl: uinfo.avatarUrl },
+
+                  success: function success(res) {
+                    _this.uid = res.data.uid;
+                    _this.getBigDays();
+                    // console.log(_this.uid);
+                  },
+                  fail: function fail(res) {
+                    // console.log(res);
+                    console.log('登录失败!');
+                  } });
+
+              } });
+
+          } else {
+            console.log('登录失败！' + res.errMsg);
+          }
+        } });
+
+
+    },
+
+    //获取bigdays
+    getBigDays: function getBigDays() {var _this2 = this;
+      //根据id获取清单
+      // console.log(this.uid);
+      uni.request({
+        method: 'GET',
+        url: 'http://localhost:8080/api/bigDay/view',
+        data: {
+          uid: this.uid },
+
+        success: function success(res) {
+          if (res.data.err == 1) {
+            // console.log(res);
+            _this2.bigDays = res.data.data;
+          } else {
+            console.log(res);
+            console.log("Bad request.");
+          }
+
+        },
+        fail: function fail() {
+          console.log("Request failed.");
+        } });
+
+    },
     createBigDay: function createBigDay() {
       uni.navigateTo({
         animationType: "slide-in-right",
@@ -290,20 +309,45 @@ var _default =
     hideModal: function hideModal(e) {
       this.modalName = null;
     },
-    del: function del(dateId, eventId) {
+    del: function del(dateId) {
       this.showModal();
       this.selectedId = dateId;
-      this.selectedIndex = eventId;
-
     },
     comfirmEdit: function comfirmEdit() {
-      console.log("edit: ", this.selectedId, this.selectedIndex);
+      console.log("edit: ", this.selectedId);
       this.hideModal();
+      uni.navigateTo({
+        url: './editeBigDay?uid=' + this.uid + '&id=' + this.selectedId });
+
     },
-    comfirmDel: function comfirmDel() {
-      console.log("delete: ", this.selectedId, this.selectedIndex);
+    comfirmDel: function comfirmDel() {var _this3 = this;
+      var _this = this;
+      // console.log("delete: ", this.selectedId);
+      uni.request({
+        method: 'GET',
+        url: 'http://localhost:8080/api/bigDay/delete',
+        data: {
+          uid: _this.uid,
+          id: _this.selectedId },
+
+        success: function success(res) {
+          if (res.data.err == 1) {
+            _this3.getUid();
+          }
+        } });
+
       this.hideModal();
-    } } };exports.default = _default;
+    } },
+
+  mounted: function mounted() {
+    this.$nextTick(function () {
+      this.getUid();
+    });
+  },
+  onPullDownRefresh: function onPullDownRefresh() {
+    //监听下拉刷新动作的执行方法，每次手动下拉刷新都会执行一次
+    this.getUid();
+  } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ })

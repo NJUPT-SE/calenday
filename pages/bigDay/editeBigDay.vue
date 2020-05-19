@@ -4,7 +4,7 @@
 		<!-- title st -->
 		<view class="cu-form-group">
 			<view class="text-xl padding-right text-bold text-black ">纪念日命名</view>
-			<input placeholder="它的名字是什么呢......？" name="input" @input="titleInput"></input>
+			<input placeholder="它的名字是什么呢......？" name="input" @input="titleInput" v-model="title"></input>
 		</view>
 		<!-- title ed -->
 
@@ -21,8 +21,8 @@
 
 		<!-- note st -->
 		<view class="padding solid">
-			<text class="flex text-bold text-xl text-black">随笔 </text>
-			<textarea class="padding-top" maxlength="-1" @input="noteInput" placeholder="写个小纸条塞入记忆里">
+			<text class="flex text-bold text-xl text-black">随笔</text>
+			<textarea class="padding-top" maxlength="-1" @input="noteInput" placeholder="写个小纸条塞入记忆里" v-model="note">
 			</textarea>
 		</view>
 		<!-- note ed -->
@@ -44,8 +44,8 @@
 
 		<!-- submit st -->
 		<view class="padding text-center">
-			<button class="cu-btn bg-orange light shadow-lg" @tap="create" data-target="Modal">
-				<text class="cuIcon-discover padding-right"></text> 加入回忆清单
+			<button class="cu-btn bg-orange light shadow-lg" @tap="edite" data-target="Modal">
+				<text class="cuIcon-discover padding-right"></text> 回炉重造
 			</button>
 		</view>
 		<!-- submit ed -->
@@ -124,12 +124,13 @@
 					},
 				],
 				uid: 0,
+				id: 0,
 				title: '',
 				date: '2020-01-01',
 				note: '',
 				img: 0,
 				modalName: null,
-				noticeId:0,
+				noticeId: 0,
 				notice: [
 					"最是人间留不住，朱颜辞镜花辞树。",
 					"轻描淡写的曾经，却是难忘的刻骨铭心。",
@@ -158,7 +159,7 @@
 			selectImg: function(index) {
 				this.img = index;
 			},
-			create: function() {
+			edite: function() {
 				const _this = this;
 				if (!this.checkEmpty()) {
 					console.log("没有名字是不会被记住的哦~");
@@ -167,12 +168,13 @@
 						method: 'GET',
 						data: {
 							uid: _this.uid,
+							id: _this.id,
 							date: _this.date,
 							title: _this.title,
 							notes: _this.note,
 							img: _this.img
 						},
-						url: 'http://localhost:8080/api/bigDay/build',
+						url: 'http://localhost:8080/api/bigDay/revise',
 						success: (res) => {
 							if (res.data.err == 1) {
 								_this.noticeId = Math.floor(Math.random() * 10) % 5;
@@ -190,7 +192,6 @@
 						}
 					})
 				}
-
 			},
 			checkEmpty: function() {
 				if (this.title === '') {
@@ -200,11 +201,95 @@
 				}
 			},
 
+
+			initPage: function() {
+				const _this = this;
+				//获取id
+				wx.login({
+					success(res) {
+						if (res.code) {
+							//发起网络请求
+							const secret = res.code;
+							let uinfo = {};
+							wx.getUserInfo({
+								success: function(res) {
+									uinfo = res.userInfo;
+									uni.request({
+										method: "GET",
+										url: "http://localhost:8080/api/UserManage",
+										header: {
+											"content-type": "application/json"
+										},
+										data: {
+											code: secret,
+											gender: uinfo.gender,
+											nickname: uinfo.nickName,
+											avaUrl: uinfo.avatarUrl
+										},
+										success: (res) => {
+											_this.uid = res.data.uid;
+											_this.getBigDays();
+										},
+										fail: (res) => {
+											// console.log(res);
+											console.log('登录失败!');
+										}
+									})
+								}
+							});
+						} else {
+							console.log('登录失败！' + res.errMsg)
+						}
+					}
+				});
+
+			},
+
+			//获取bigdays
+			getBigDays: function() {
+				const _this = this;
+				//根据id获取清单
+				// console.log(this.uid);
+				uni.request({
+					method: 'GET',
+					url: 'http://localhost:8080/api/bigDay/view',
+					data: {
+						uid: this.uid,
+					},
+					success: (res) => {
+						if (res.data.err == 1) {
+							console.log(res);
+							for (let i = 0; i < res.data.data.length; i++) {
+								if (res.data.data[i].id == _this.id) {
+									_this.title = res.data.data[i].title;
+									_this.date = res.data.data[i].date;
+									_this.img = res.data.data[i].img;
+									_this.note = res.data.data[i].notes;
+								}
+							}
+						} else {
+							console.log(res);
+							console.log("Bad request.");
+						}
+					},
+					fail: () => {
+						console.log("Request failed.");
+					}
+				})
+			},
+
 		},
-		onLoad: function (option) { //option为object类型，会序列化上个页面传递的参数
-		        console.log(option.uid); //打印出上个页面传递的参数。
-		        console.log(option.id); //打印出上个页面传递的参数。
-		    }
+		onLoad: function(option) { //option为object类型，会序列化上个页面传递的参数
+			this.uid = option.uid;
+			this.id = option.id;
+			this.initPage();
+		},
+		mounted: function() {
+			this.$nextTick(function() {
+
+				this.initPage();
+			})
+		},
 	}
 </script>
 

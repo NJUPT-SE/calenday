@@ -1,12 +1,13 @@
 {
   "pages": [
+    "pages/bigDay/bigDay",
     "pages/bigDay/createBigDay",
+    "pages/bigDay/editeBigDay",
     "pages/index/index",
     "pages/calendar/calendar",
     "pages/mine/mine",
     "pages/keep/keep",
-    "pages/calendar/weather",
-    "pages/bigDay/bigDay"
+    "pages/calendar/weather"
   ],
   "subPackages": [],
   "window": {
@@ -45,5 +46,6 @@
       }
     ]
   },
-  "usingComponents": {}
+  "usingComponents": {},
+  "sitemapLocation": "sitemap47.json"
 }

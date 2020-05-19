@@ -8659,7 +8659,19 @@ module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.
 
 /***/ }),
 
-/***/ 66:
+/***/ 7:
+/*!***********************************************************************!*\
+  !*** D:/Tools/HBuilderX/project/Calenday/pages.json?{"type":"style"} ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/bigDay/bigDay": { "navigationBarTitleText": "纪念日", "enablePullDownRefresh": true }, "pages/bigDay/createBigDay": {}, "pages/bigDay/editeBigDay": {}, "pages/index/index": { "navigationBarTitleText": "登录" }, "pages/calendar/calendar": { "navigationBarTitleText": "日历" }, "pages/mine/mine": {}, "pages/keep/keep": {}, "pages/calendar/weather": {} }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarBackgroundColor": "#FFFFFF", "navigationBarTitleText": "点滴", "backgroundColor": "#FFFFFF" } };exports.default = _default;
+
+/***/ }),
+
+/***/ 76:
 /*!***************************************************************************!*\
   !*** D:/Tools/HBuilderX/project/Calenday/components/uni-calendar/util.js ***!
   \***************************************************************************/
@@ -8667,7 +8679,7 @@ module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _calendar = _interopRequireDefault(__webpack_require__(/*! ./calendar.js */ 67));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}var
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _calendar = _interopRequireDefault(__webpack_require__(/*! ./calendar.js */ 77));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}var
 
 Calendar = /*#__PURE__*/function () {
   function Calendar()
@@ -8997,7 +9009,7 @@ Calendar;exports.default = _default;
 
 /***/ }),
 
-/***/ 67:
+/***/ 77:
 /*!*******************************************************************************!*\
   !*** D:/Tools/HBuilderX/project/Calenday/components/uni-calendar/calendar.js ***!
   \*******************************************************************************/
@@ -9551,18 +9563,6 @@ var calendar = {
 
 
 calendar;exports.default = _default;
-
-/***/ }),
-
-/***/ 7:
-/*!***********************************************************************!*\
-  !*** D:/Tools/HBuilderX/project/Calenday/pages.json?{"type":"style"} ***!
-  \***********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/bigDay/bigDay": { "navigationBarTitleText": "纪念日", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/index/index": { "navigationBarTitleText": "登录", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/calendar/calendar": { "navigationBarTitleText": "日历", "usingComponents": {}, "usingAutoImportComponents": { "uni-calendar": "/components/uni-calendar/uni-calendar" } }, "pages/mine/mine": { "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/keep/keep": { "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/calendar/weather": { "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/bigDay/createBigDay": { "usingComponents": {}, "usingAutoImportComponents": {} } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarBackgroundColor": "#FFFFFF", "navigationBarTitleText": "点滴", "backgroundColor": "#FFFFFF" } };exports.default = _default;
 
 /***/ }),
 
