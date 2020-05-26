@@ -1,0 +1,51 @@
+{
+	"pages": [{
+		"path": "pages/index/main",
+		"style": {
+			"navigationBarTitleText": "打卡"
+		}
+	},
+	{
+		"path":"pages/index/creat_card",
+		"style":{
+			"navigationBarTitleText":"新建习惯"
+		}
+	},
+	{
+		"path":"pages/index/edit",
+		"style":{
+			"navigationBarTitleText":"修改习惯"
+		}
+	}
+	    ,{
+            "path" : "pages/index/delet",
+            "style" : {
+				"navigationBarTitleText":"删除"
+			}
+        }
+        ,{
+            "path" : "pages/index/edit_card",
+            "style" : {
+				"navigationBarTitleText":"编辑习惯"
+			}
+        },
+		{
+			"path" : "pages/index/delet",
+			"style" : {
+				"navigationBarTitleText":"删除习惯"
+			}
+		}
+        ,{
+            "path" : "pages/index/record",
+            "style" : {
+				"navigationBarTitleText":"记录"
+			}
+        }
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F5F5F5",
+		"backgroundColor": "#e3e1e4"
+	}
+}

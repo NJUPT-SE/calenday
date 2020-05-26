@@ -1,0 +1,42 @@
+
+.creat_part {
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	        flex-direction: column;
+	-webkit-flex-wrap: wrap;
+	        flex-wrap: wrap;
+	-webkit-justify-content: space-around;
+	        justify-content: space-around;
+	-webkit-align-content: flex-start;
+	        align-content: flex-start;
+	-webkit-box-flex: 1;
+	-webkit-flex: auto |[ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'>];
+	        flex: auto |[ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'>]
+}
+.show_img {
+	padding-left: 20rpx;
+	padding-right: 10rpx;
+}
+.input_part{
+	
+	height: 80rpx;
+	border: 2px #4CD964 solid;
+}
+.name_part{
+	padding: 20rpx;
+	border: 2px red solid;
+}
+.time_part{
+	padding: 20rpx;
+	border: 2px red solid;
+}
+.clock_part{
+	padding: 20rpx;
+	border: 2px red solid;
+}
+.img_part{
+	padding: 20rpx;
+	border: 2px red solid;
+}
+

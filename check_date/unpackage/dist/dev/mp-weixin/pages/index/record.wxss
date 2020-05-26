@@ -1,0 +1,24 @@
+
+.crad_image {
+		width: 100rpx;
+		height: 100rpx;
+		padding: 10rpx;
+}
+.show_habit{
+}
+.main_part{
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	        flex-direction: column;
+	-webkit-flex-wrap: wrap;
+	        flex-wrap: wrap;
+	-webkit-justify-content: space-around;
+	        justify-content: space-around;
+	-webkit-align-content: flex-start;
+	        align-content: flex-start;
+	-webkit-box-flex: 1;
+	-webkit-flex: auto |[ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'>];
+	        flex: auto |[ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'>]
+}
+

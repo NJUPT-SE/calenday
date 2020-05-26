@@ -1,0 +1,20 @@
+{
+  "pages": [
+    "pages/index/main",
+    "pages/index/creat_card",
+    "pages/index/edit",
+    "pages/index/delet",
+    "pages/index/edit_card",
+    "pages/index/delet",
+    "pages/index/record"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#F5F5F5",
+    "backgroundColor": "#e3e1e4"
+  },
+  "usingComponents": {},
+  "sitemapLocation": "sitemap99.json"
+}

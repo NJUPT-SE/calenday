@@ -1,0 +1,1 @@
+<view class="main_part"><block wx:for="{{habit_object}}" wx:for-item="iterm" wx:for-index="__i0__"><view class="show_habit"><image src="{{iterm.img}}" mode="aspectFit"></image><text>{{iterm.title}}</text><text>{{'打卡次数'+iterm.number}}</text></view></block></view>

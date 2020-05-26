@@ -1,0 +1,23 @@
+
+.crad_image {
+	width: 180rpx;
+	height: 180rpx;
+	/*line-height: 230rpx; */
+	padding: 20rpx;
+}
+.show_card {
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	        flex-direction: row;
+	-webkit-flex-wrap: wrap;
+	        flex-wrap: wrap;
+	-webkit-justify-content: space-around;
+	        justify-content: space-around;
+	-webkit-align-content: flex-start;
+	        align-content: flex-start;
+	-webkit-box-flex: 1;
+	-webkit-flex: auto |[ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'>];
+	        flex: auto |[ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'>]
+}
+
