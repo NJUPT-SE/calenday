@@ -1,12 +1,14 @@
 {
   "pages": [
+    "pages/keep/createKeep",
+    "pages/keep/achievement",
+    "pages/keep/keep",
     "pages/bigDay/bigDay",
     "pages/bigDay/createBigDay",
     "pages/bigDay/editeBigDay",
     "pages/index/index",
     "pages/calendar/calendar",
     "pages/mine/mine",
-    "pages/keep/keep",
     "pages/calendar/weather"
   ],
   "subPackages": [],
@@ -46,6 +48,5 @@
       }
     ]
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap47.json"
+  "usingComponents": {}
 }

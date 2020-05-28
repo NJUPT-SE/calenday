@@ -1,5 +1,14 @@
 {
 	"pages": [{
+            "path" : "pages/keep/createKeep",
+            "style" : {}
+        },{
+            "path" : "pages/keep/achievement",
+            "style" : {}
+        },{
+			"path": "pages/keep/keep",
+			"style": {}
+		}, {
 			"path": "pages/bigDay/bigDay",
 			"style": {
 				"navigationBarTitleText": "纪念日",
@@ -26,14 +35,13 @@
 			"path": "pages/mine/mine",
 			"style": {}
 		}, {
-			"path": "pages/keep/keep",
-			"style": {}
-		}, {
 			"path": "pages/calendar/weather",
 			"style": {}
 		}
 
-	],
+
+        
+    ],
 
 	"tabBar": {
 		"backgroundColor": "#FFFFFF",
