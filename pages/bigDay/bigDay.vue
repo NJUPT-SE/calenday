@@ -127,7 +127,7 @@
 						uid: this.uid,
 					},
 					success: (res) => {
-						if (res.data.err == 1) {
+						if (res.data.err == 0) {
 							// console.log(res);
 							this.bigDays = res.data.data;
 						} else {

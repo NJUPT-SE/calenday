@@ -43,7 +43,7 @@
 				<!-- 第一栏ed -->
 
 				<!-- 第二栏st -->
-				<view class="padding bg-white solid">
+				<view class="padding bg-white solid" @tap="achievements">
 					<view class="flex-sub text-center">
 						<!-- 次数 -->
 						<view class="text-xl">
@@ -106,10 +106,11 @@
 	export default {
 		data() {
 			return {
+				uid:-1,
 				userName: "赖小七",
 				avaUrl: "background-image:url",
-				continuity: 3,
-				total: 5,
+				continuity: 0,
+				total: 0,
 				today: true,
 				modalName: null,
 			}
@@ -149,10 +150,91 @@
 					url: "../index/index"
 				})
 			},
-
+			
+			achievements:function(){
+					uni.navigateTo({
+						url:"../keep/achievement",
+					})
+			},
+			
+			//获取用户id
+			initKeep: function() {
+				const _this = this;
+				//获取id
+				wx.login({
+					success(res) {
+						if (res.code) {
+							//发起网络请求
+							const secret = res.code;
+							let uinfo = {};
+							wx.getUserInfo({
+								success: function(res) {
+									uinfo = res.userInfo;
+									uni.request({
+										method: "GET",
+										url: "http://localhost:8080/api/UserManage",
+										header: {
+											"content-type": "application/json"
+										},
+										data: {
+											code: secret,
+											gender: uinfo.gender,
+											nickname: uinfo.nickName,
+											avaUrl: uinfo.avatarUrl
+										},
+										success: (res) => {
+											_this.uid = res.data.uid;
+											_this.getHabits();
+											// console.log(_this.uid);
+										},
+										fail: (res) => {
+											// console.log(res);
+											console.log('登录失败!');
+										}
+									})
+								}
+							});
+						} else {
+							console.log('登录失败！' + res.errMsg)
+						}
+					}
+				});
+			
+			},
+			
+			//获取bigdays
+			getHabits: function() {
+				//根据id获取清单
+				// console.log(this.uid);
+				const _this = this;
+				uni.request({
+					method: 'GET',
+					url: 'http://localhost:8080/api/habit/view',
+					data: {
+						uid: _this.uid,
+					},
+					success: (res) => {
+						if (res.data.err == 0) {
+							console.log(res);
+							let result = res.data.data;
+							for (let i = 0; i < result.length; i++) {
+								_this.continuity = Math.max(_this.continuity, result[i].continue_clockin);
+								_this.total = Math.max(_this.total, result[i].total_clockin);
+							}
+						} else {
+							console.log(res);
+							console.log("Bad request.");
+						}
+					},
+					fail: () => {
+						console.log("Request failed.");
+					}
+				})
+			},
 		},
 		onLoad() {
 			this.getUser();
+			this.initKeep();
 		}
 	}
 </script>

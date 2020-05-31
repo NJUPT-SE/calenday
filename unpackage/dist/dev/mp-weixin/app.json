@@ -1,8 +1,8 @@
 {
   "pages": [
-    "pages/keep/createKeep",
-    "pages/keep/achievement",
     "pages/keep/keep",
+    "pages/keep/achievement",
+    "pages/keep/createKeep",
     "pages/bigDay/bigDay",
     "pages/bigDay/createBigDay",
     "pages/bigDay/editeBigDay",

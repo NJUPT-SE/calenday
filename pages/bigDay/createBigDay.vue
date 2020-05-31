@@ -174,7 +174,7 @@
 						},
 						url: 'http://localhost:8080/api/bigDay/build',
 						success: (res) => {
-							if (res.data.err == 1) {
+							if (res.data.err == 0) {
 								_this.noticeId = Math.floor(Math.random() * 10) % 5;
 								console.log(_this.noticeId);
 								_this.showModal();

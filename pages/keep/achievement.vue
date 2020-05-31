@@ -2,7 +2,7 @@
 	<view>
 		<!-- 展示所有打卡 -->
 		<view class="cu-list menu">
-			<view class="cu-item" v-for="item in testData" :key="item.id">
+			<view class="cu-item" v-for="item in keepData" :key="item.id">
 				<view class="content col-1 flex solid-bottom">
 					<view class="cu-avatar lg bg-white" :style="[{ backgroundImage:'url(../../static/pic' + item.img + '.png)'}]"></view>
 					<text class="text-grey padding text-xl">{{item.title}}</text>
@@ -88,11 +88,98 @@
 						number: "100",
 					},
 				],
+				keepData:[]
 			}
 		},
 		methods: {
-
-		}
+			//获取用户id
+			initKeep: function() {
+				const _this = this;
+				//获取id
+				wx.login({
+					success(res) {
+						if (res.code) {
+							//发起网络请求
+							const secret = res.code;
+							let uinfo = {};
+							wx.getUserInfo({
+								success: function(res) {
+									uinfo = res.userInfo;
+									uni.request({
+										method: "GET",
+										url: "http://localhost:8080/api/UserManage",
+										header: {
+											"content-type": "application/json"
+										},
+										data: {
+											code: secret,
+											gender: uinfo.gender,
+											nickname: uinfo.nickName,
+											avaUrl: uinfo.avatarUrl
+										},
+										success: (res) => {
+											_this.uid = res.data.uid;
+											_this.getHabits();
+											// console.log(_this.uid);
+										},
+										fail: (res) => {
+											// console.log(res);
+											console.log('登录失败!');
+										}
+									})
+								}
+							});
+						} else {
+							console.log('登录失败！' + res.errMsg)
+						}
+					}
+				});
+			
+			},
+			
+			//获取bigdays
+			getHabits: function() {
+				//根据id获取清单
+				// console.log(this.uid);
+				const _this = this;
+				uni.request({
+					method: 'GET',
+					url: 'http://localhost:8080/api/habit/view',
+					data: {
+						uid: this.uid,
+					},
+					success: (res) => {
+						if (res.data.err == 0) {
+							console.log(res);
+							let result = res.data.data;
+							for (let i = 0; i < result.length; i++) {
+								// console.log(result[i]);
+								_this.keepData.push({
+									id: result[i].id,
+									title: result[i].title,
+									img: result[i].img,
+									time: result[i].time,
+									number:result[i].total_clockin
+								});
+							}
+						} else {
+							console.log(res);
+							console.log("Bad request.");
+						}
+					},
+					fail: () => {
+						console.log("Request failed.");
+					}
+				})
+			},
+			
+		},
+		mounted: function() {
+			this.$nextTick(function() {
+				console.log("Lunching...")
+				this.initKeep();
+			})
+		},
 	}
 </script>
 

@@ -176,7 +176,7 @@
 						},
 						url: 'http://localhost:8080/api/bigDay/revise',
 						success: (res) => {
-							if (res.data.err == 1) {
+							if (res.data.err == 0) {
 								_this.noticeId = Math.floor(Math.random() * 10) % 5;
 								console.log(_this.noticeId);
 								_this.showModal();
@@ -257,7 +257,7 @@
 						uid: this.uid,
 					},
 					success: (res) => {
-						if (res.data.err == 1) {
+						if (res.data.err == 0) {
 							console.log(res);
 							for (let i = 0; i < res.data.data.length; i++) {
 								if (res.data.data[i].id == _this.id) {

@@ -144,20 +144,21 @@
 						method: 'GET',
 						data: {
 							uid: _this.uid,
+							remind:1,
 							time: _this.time,
 							title: _this.title,
 							img: _this.img
 						},
-						url: 'http://localhost:8080/api/bigDay/build',
+						url: 'http://localhost:8080/api/habit/build',
 						success: (res) => {
-							if (res.data.err == 1) {
+							if (res.data.err == 0) {
 								_this.noticeId = Math.floor(Math.random() * 10) % 5;
 								console.log(_this.noticeId);
 								_this.showModal();
 								setTimeout(function() {
 									_this.hideModal();
 									uni.switchTab({
-										url: './bigDay'
+										url: './keep'
 									})
 								}, 1500);
 							} else {

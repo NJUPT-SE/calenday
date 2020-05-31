@@ -1,14 +1,17 @@
 {
 	"pages": [{
-            "path" : "pages/keep/createKeep",
-            "style" : {}
-        },{
+			"path": "pages/keep/keep",
+			"style": {
+				"navigationBarTitleText": "我的Flag",
+				"enablePullDownRefresh": true
+			}
+		},{
             "path" : "pages/keep/achievement",
             "style" : {}
         },{
-			"path": "pages/keep/keep",
-			"style": {}
-		}, {
+            "path" : "pages/keep/createKeep",
+            "style" : {}
+        }, {
 			"path": "pages/bigDay/bigDay",
 			"style": {
 				"navigationBarTitleText": "纪念日",
